@@ -6,8 +6,8 @@ namespace BuhUchetApi.DataBase.Entities
     {
         public Guid Id { get; set; }
         public string SerialNumber { get; set; }
-        public string OsNameId { get; set; }
-        public string MolId { get; set; }
-        public string OsGroupId { get; set; }
+        public OsName OsName { get; set; }
+        public Mol Mol { get; set; }
+        public OsGroup OsGroup { get; set; }
     }
 }

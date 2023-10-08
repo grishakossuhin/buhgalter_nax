@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "wDZrCVyYRnnzjefRRCb/lGNNuYZgE9V51m6UfcdUc89aj7h6p8TOFd638i7BI0dZ0hWdAeFoXw54BAxzcXKnZg==",
+  "success": true,
+  "projectFilePath": "D:\\CSharp\\BuhUchet\\BuhUchetApi\\BuhUchetApi.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\User\\.nuget\\packages\\serilog\\3.0.1\\serilog.3.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}

@@ -63,3 +63,4 @@ D:\CSharp\BuhUchet\BuhUchetApi\bin\Debug\net6.0\Microsoft.Web.Infrastructure.dll
 D:\CSharp\BuhUchet\BuhUchetApi\bin\Debug\net6.0\Newtonsoft.Json.dll
 D:\CSharp\BuhUchet\BuhUchetApi\bin\Debug\net6.0\Swashbuckle.Core.dll
 D:\CSharp\BuhUchet\BuhUchetApi\bin\Debug\net6.0\WebActivatorEx.dll
+D:\CSharp\BuhUchet\BuhUchetApi\bin\Debug\net6.0\logs\log20231009.json

@@ -1,5 +1,7 @@
 using BuhUchetApi.Common;
 using BuhUchetApi.DataBase;
+using BuhUchetApi.Services.RegisterUser;
+using BuhUchetApi.Services.UserServices.AuthentificateUser;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -26,13 +28,22 @@ namespace BuhUchetApi
         }
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMvc();
             services.AddControllers();
             services.Configure<ConnectionStrings>(_configuration.GetSection("ConnectionStrings"));
             services.AddDbContext<ApplicationContext>();
+            
+            
+            services.AddTransient<RegisterUserService>();
+            services.AddTransient<AuthentificateService>();
+
+
+
             services.AddSwaggerGen(options =>
             {
                 options.CustomSchemaIds(type => type.ToString());
             });
+
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

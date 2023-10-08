@@ -23,6 +23,6 @@ namespace BuhUchetApi.DataBase.Entities
         /// <summary>
         /// Пользователь
         /// </summary>
-        public string UserId { get; set; }
+        public Employee Employee { get; set; }
     }
 }

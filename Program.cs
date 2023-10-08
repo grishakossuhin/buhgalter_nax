@@ -38,6 +38,7 @@ namespace BuhUchetApi
                     var services = scope.ServiceProvider;
 
                     var dbContext = services.GetService<ApplicationContext>();
+                    //await dbContext.Database.EnsureDeletedAsync();
                     await dbContext.Database.EnsureCreatedAsync();
                 }
 

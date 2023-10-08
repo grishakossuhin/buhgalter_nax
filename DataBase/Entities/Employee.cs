@@ -8,5 +8,7 @@ namespace BuhUchetApi.DataBase.Entities
         public string Firstname { get; set; }
         public string Secondname { get; set; }
         public string Thirdname { get; set; }
+        public Post Post { get; set; }
+        public Departament Departament { get; set; }
     }
 }

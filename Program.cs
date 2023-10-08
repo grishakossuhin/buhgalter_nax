@@ -1,3 +1,4 @@
+using BuhUchetApi.DataBase;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -36,7 +37,7 @@ namespace BuhUchetApi
                 {
                     var services = scope.ServiceProvider;
 
-                    var dbContext = services.GetService<ApplicationDbContext>();
+                    var dbContext = services.GetService<ApplicationContext>();
                     await dbContext.Database.EnsureCreatedAsync();
                 }
 
@@ -54,7 +55,7 @@ namespace BuhUchetApi
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
-            .UseSerilog()
+                .UseSerilog()
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseKestrel();

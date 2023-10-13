@@ -2,6 +2,8 @@ using BuhUchetApi.Common;
 using BuhUchetApi.DataBase;
 using BuhUchetApi.Services.RegisterUser;
 using BuhUchetApi.Services.UserServices.AuthentificateUser;
+using BuhUchetApi.Services.UserServices.RemoveUser;
+using BuhUchetApi.Services.UserServices.UpdateUser;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -36,6 +38,8 @@ namespace BuhUchetApi
             
             services.AddTransient<RegisterUserService>();
             services.AddTransient<AuthentificateService>();
+            services.AddTransient<UpdateUserService>();
+            services.AddTransient<RemoveUserService>();
 
 
 

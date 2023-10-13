@@ -37,17 +37,12 @@ namespace BuhUchetApi.Services.UserServices.RemoveUser
             {
                 try
                 {
-                    var account = await _dbContext.Accounts.FirstOrDefaultAsync(c => c.Id == userId);
-                    var employee = await _dbContext.Employees.FirstOrDefaultAsync(c => c.Id == userId);
-                    var post = await _dbContext.Posts.FirstOrDefaultAsync(c => c.Id == userId);
-                    var role = await _dbContext.UserRoles.FirstOrDefaultAsync(c => c.Id == userId);
-                    var departament = await _dbContext.Departaments.FirstOrDefaultAsync(c => c.Id == userId);
-
-                    _dbContext.Departaments.Remove(departament);
-                    _dbContext.UserRoles.Remove(role);
-                    _dbContext.Posts.Remove(post);
-                    _dbContext.Employees.Remove(employee);
-                    _dbContext.Accounts.Remove(account);
+                    _dbContext.Departaments.Remove(useracc.Employee.Departament);
+                    _dbContext.UserRoles.Remove(useracc.Role);
+                    _dbContext.Posts.Remove(useracc.Employee.Post);
+                    _dbContext.Employees.Remove(useracc.Employee);
+                    _dbContext.Accounts.Remove(useracc);
+                    await _dbContext.SaveChangesAsync();
 
                     return new BaseAnswerVm<string>()
                     {

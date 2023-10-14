@@ -6,6 +6,6 @@ namespace BuhUchetApi.DataBase.Entities
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
-        public DateTime UsefullDate { get; set; }
+        public int UsefullDate { get; set; }
     }
 }

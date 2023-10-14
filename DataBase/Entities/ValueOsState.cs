@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Runtime.Serialization;
+using static BuhUchetApi.Models.Enums;
 
 namespace BuhUchetApi.DataBase.Entities
 {
@@ -9,5 +11,6 @@ namespace BuhUchetApi.DataBase.Entities
         public OsState OsState { get; set; }
         public DateTime BeginDate { get; set; }
         public DateTime EndDate { get; set; }
+        public States States { get; set; }
     }
 }

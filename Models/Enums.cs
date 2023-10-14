@@ -17,5 +17,26 @@
             /// </summary>
             Admin = 2
         }
+
+        public enum States
+        {
+            Created = 0,
+            Signed = 1,
+            Updated = 2
+        }
+
+        public enum Groups
+        {
+            First = 1,
+            Second = 2,
+            Third = 3,
+            Fourth = 4,
+            Fiveth = 5,
+            Sixth = 6,
+            Seventh = 7,
+            Eighth = 8,
+            Nineth = 9,
+            Tenth = 10
+        }
     }
 }

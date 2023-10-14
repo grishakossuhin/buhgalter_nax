@@ -1,5 +1,7 @@
 using BuhUchetApi.Common;
 using BuhUchetApi.DataBase;
+using BuhUchetApi.Services.Amortization;
+using BuhUchetApi.Services.MainThingServices;
 using BuhUchetApi.Services.RegisterUser;
 using BuhUchetApi.Services.UserServices.AuthentificateUser;
 using BuhUchetApi.Services.UserServices.RemoveUser;
@@ -40,6 +42,8 @@ namespace BuhUchetApi
             services.AddTransient<AuthentificateService>();
             services.AddTransient<UpdateUserService>();
             services.AddTransient<RemoveUserService>();
+            services.AddTransient<GroupInfoService>();
+            services.AddTransient<AmortizationService>();
 
 
 

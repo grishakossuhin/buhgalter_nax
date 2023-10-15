@@ -2,7 +2,7 @@
 
 namespace BuhUchetApi.DataBase.Entities
 {
-    public class Mol
+    public class ActType
     {
         public Guid Id { get; set; }
         public string Name { get; set; }

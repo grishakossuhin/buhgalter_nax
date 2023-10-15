@@ -37,7 +37,7 @@ namespace BuhUchetApi.Services.UserServices.UpdateUser
             try
             {
                 account.Username = request.Username != account.Username ? request.Username : account.Username;
-                account.Password = request.Password != account.Password ? request.Password : account.Password;
+                account.Password = (request.Password != account.Password && !string.IsNullOrWhiteSpace(request.Password)) ? request.Password : account.Password;
                 account.Role.Role = request.Role != account.Role.Role ? request.Role : account.Role.Role;
                 account.Employee.Firstname = request.Firstname != account.Employee.Firstname ? request.Firstname : account.Employee.Firstname;
                 account.Employee.Secondname = request.Secondname != account.Employee.Secondname ? request.Secondname : account.Employee.Secondname;

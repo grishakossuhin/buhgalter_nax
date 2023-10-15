@@ -30,6 +30,7 @@ namespace BuhUchetApi.DataBase
         public DbSet<UserRole> UserRoles { get; set; }
         public DbSet<ValueOsParametr> ValueOsParametrs { get; set; }
         public DbSet<ValueOsState> ValueOsStates { get; set; }
+        public DbSet<ActType> ActTypes { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -53,6 +54,7 @@ namespace BuhUchetApi.DataBase
             modelBuilder.Entity<UserRole>().HasKey(c => c.Id);
             modelBuilder.Entity<ValueOsParametr>().HasKey(c => c.Id);
             modelBuilder.Entity<ValueOsState>().HasKey(c => c.Id);
+            modelBuilder.Entity<ActType>().HasKey(c => c.Id);
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

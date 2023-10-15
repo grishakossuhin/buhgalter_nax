@@ -38,5 +38,17 @@
             Nineth = 9,
             Tenth = 10
         }
+
+        public enum Directories 
+        {
+            Group,
+            Name,
+            MOL,
+            Parametr,
+            State,
+            ActType,
+            Post,
+            Departament
+        }
     }
 }

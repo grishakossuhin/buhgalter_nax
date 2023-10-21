@@ -22,7 +22,8 @@ namespace BuhUchetApi.Services.UserServices.AuthentificateUser
             {
                 var account = await _dbContext.Accounts
                 .Include(c => c.Employee)
-                .Include(c => c.Employee.Departament)
+                .Include(c => c.Employee.Mol)
+                .Include(c => c.Employee)
                 .Include(c => c.Employee.Post)
                 .Include(c => c.Role)
                 .FirstOrDefaultAsync(c => c.Username == request.Username && c.Password == request.Password);

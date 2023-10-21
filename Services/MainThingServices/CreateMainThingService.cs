@@ -2,6 +2,7 @@
 using BuhUchetApi.DataBase.Entities;
 using BuhUchetApi.Models;
 using BuhUchetApi.Models.MainThingModels;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Threading.Tasks;
 
@@ -10,12 +11,10 @@ namespace BuhUchetApi.Services.MainThingServices
     public class CreateMainThingService
     {
         private readonly ApplicationContext _dbContext;
-        private readonly GroupInfoService _groupService;
 
-        public CreateMainThingService(ApplicationContext dbContext, GroupInfoService groupInfo)
+        public CreateMainThingService(ApplicationContext dbContext)
         {
             _dbContext = dbContext;
-            _groupService = groupInfo;
         }
 
         public async Task<BaseAnswerVm<string>> CreateOs(CreationOsDto request)
@@ -32,31 +31,21 @@ namespace BuhUchetApi.Services.MainThingServices
 
             try
             {
-                var mainThing = new Os()
+                //добавить параметры
+                //добавить состояние
+                //добавить амортизацию
+                var thing = await _dbContext.Oss.FirstOrDefaultAsync(c => c.SerialNumber == request.SerialNumber);
+                if (thing != null)
                 {
-                    SerialNumber = request.SerialNumber,
-                    ValueOsState = new ValueOsState()
+                    return new BaseAnswerVm<string>()
                     {
-                        OsState = new OsState()
-                        {
-                            Name = "Статус документа",
-                            Identificator = "DocumentState"
-                        },
-                        States = Enums.States.Created
-                    },
-                    OsName = new OsName()
-                    {
-                        Name = request.Name
-                    },
-                    Mol = new Mol()
-                    {
-                        Id = request.MolId,
-                    }
-                };
+                        Success = false,
+                        Message = "Уже существует ОС с заданным серийным номером",
+                        Content = null
+                    };
+                }
 
-                var group = await _groupService.GetInfo(request.Group);
-                mainThing.OsGroup.UsefullDate = group.Time;
-                mainThing.OsGroup.Name = group.Name;
+                var mainThing = new Os();
 
                 await _dbContext.Oss.AddAsync(mainThing);
                 await _dbContext.SaveChangesAsync();

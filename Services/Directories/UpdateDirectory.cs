@@ -17,7 +17,7 @@ namespace BuhUchetApi.Services.Directories
             _dbContext = context;
         }
 
-        public async Task<BaseAnswerVm<string>> RemoveDir(UpdateDirectoryDto request)
+        public async Task<BaseAnswerVm<string>> UpdateDir(UpdateDirectoryDto request)
         {
             if (request.Directory == Enums.Directories.MOL)
             {

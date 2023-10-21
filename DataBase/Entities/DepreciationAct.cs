@@ -16,5 +16,10 @@ namespace BuhUchetApi.DataBase.Entities
         /// Сумма начислений за месяц
         /// </summary>
         public double SummMonth { get; set; }
+
+        /// <summary>
+        /// ОС
+        /// </summary>
+        public Os Os { get; set; }
     }
 }

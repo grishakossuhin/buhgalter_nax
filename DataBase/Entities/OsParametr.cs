@@ -12,9 +12,5 @@ namespace BuhUchetApi.DataBase.Entities
         /// Название
         /// </summary>
         public string Name { get; set; }
-        /// <summary>
-        /// Идентификатор
-        /// </summary>
-        public string Identificator { get; set; }
     }
 }

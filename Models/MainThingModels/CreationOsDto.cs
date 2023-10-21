@@ -26,11 +26,7 @@ namespace BuhUchetApi.Models.MainThingModels
         /// <summary>
         /// Первоначальная стоимость
         /// </summary>
-        public int StartPrice { get; set; }
-        /// <summary>
-        /// Набор расширяемых параметров
-        /// </summary>
-        public List<Parametr> Parametrs { get; set; }
+        public double StartPrice { get; set; }
         /// <summary>
         /// МОЛ
         /// </summary>
@@ -43,8 +39,14 @@ namespace BuhUchetApi.Models.MainThingModels
         /// <summary>
         /// Група ОС
         /// </summary>
-        public Groups Group { get; set; }
-
+        public Guid GroupId { get; set; }
+        /// <summary>
+        /// МОЛ
+        /// </summary>
         public Guid MolId { get; set; }
+        /// <summary>
+        /// Документ
+        /// </summary>
+        public Guid DocumentId { get; set; }
     }
 }

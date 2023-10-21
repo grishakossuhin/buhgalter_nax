@@ -21,25 +21,17 @@ namespace BuhUchetApi.Services.RegisterUser
             {
                 Username = request.Username,
                 Password = request.Password,
-                Role = new UserRole()
-                {
-                    Role = request.Role
-                },
                 Employee = new Employee()
                 {
                     Firstname = request.Firstname,
                     Secondname = request.Secondname,
                     Thirdname = request.Thirdname,
-                    Departament = new Departament()
-                    {
-                        Name = request.Departament
-                    },
-                    Post = new Post()
-                    {
-                        Name = request.Post
-                    }
                 }
             };
+
+
+
+
             try
             {
                 await _dbContext.Accounts.AddAsync(account);

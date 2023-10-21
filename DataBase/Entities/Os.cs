@@ -10,7 +10,6 @@ namespace BuhUchetApi.DataBase.Entities
         public OsName OsName { get; set; }
         public Mol Mol { get; set; }
         public OsGroup OsGroup { get; set; }
-        public ValueOsState ValueOsState { get; set; }
-        public List<ValueOsParametr> ValueOsParametrs { get; set; }
+        public Document Document { get; set; }
     }
 }

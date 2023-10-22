@@ -11,6 +11,5 @@ namespace BuhUchetApi.DataBase.Entities
         public OsState OsState { get; set; }
         public DateTime BeginDate { get; set; }
         public DateTime EndDate { get; set; }
-        public States States { get; set; }
     }
 }

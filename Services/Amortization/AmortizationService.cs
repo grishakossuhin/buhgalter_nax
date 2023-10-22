@@ -67,13 +67,13 @@ namespace BuhUchetApi.Services.Amortization
                 var dir = await _dbContext.OsParametrs.FirstOrDefaultAsync(c => c.Name == "Остаточная стоимость");
                 if (dir == null)
                 {
-                    return new BaseAnswerVm<AmortizationResponseVm?>()
+                    return new BaseAnswerVm<string?>()
                     {
                         Success = false,
                         Message = "Не найден в справочнике параметр \"Остаточная стоимость\""
                     };
                 }
-                
+
                 var value = new ValueOsParametr()
                 {
                     Os = os,
@@ -87,7 +87,7 @@ namespace BuhUchetApi.Services.Amortization
             }
             catch (Exception ex)
             {
-                return new BaseAnswerVm<AmortizationResponseVm?>()
+                return new BaseAnswerVm<string?>()
                 {
                     Success = false,
                     Message = "Ошибка сохранения параметра \"Остаточная стоимость\" в базу. " + ex.Message
@@ -99,7 +99,7 @@ namespace BuhUchetApi.Services.Amortization
                 var dir = await _dbContext.OsParametrs.FirstOrDefaultAsync(c => c.Name == "Начисленный износ");
                 if (dir == null)
                 {
-                    return new BaseAnswerVm<AmortizationResponseVm?>()
+                    return new BaseAnswerVm<string?>()
                     {
                         Success = false,
                         Message = "Не найден в справочнике параметр \"Начисленный износ\""
@@ -118,7 +118,7 @@ namespace BuhUchetApi.Services.Amortization
             }
             catch (Exception ex)
             {
-                return new BaseAnswerVm<AmortizationResponseVm?>()
+                return new BaseAnswerVm<string?>()
                 {
                     Success = false,
                     Message = "Ошибка сохранения параметра \"Начисленный износ\" в базу. " + ex.Message
@@ -139,16 +139,19 @@ namespace BuhUchetApi.Services.Amortization
             }
             catch (Exception ex)
             {
-                return new BaseAnswerVm<AmortizationResponseVm?>()
+                return new BaseAnswerVm<string?>()
                 {
                     Success = false,
                     Message = "Ошибка сохранения акта амортизации в базу. " + ex.Message
                 };
             }
 
-            return new BaseAnswerVm<AmortizationResponseVm?>()
-
-            return response;
+            return new BaseAnswerVm<string?>()
+            {
+                Success = true,
+                Message = "Успешное создание акта амортизации"
+            };
         }
+
     }
 }

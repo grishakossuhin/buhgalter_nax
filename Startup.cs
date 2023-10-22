@@ -9,16 +9,9 @@ using BuhUchetApi.Services.UserServices.RemoveUser;
 using BuhUchetApi.Services.UserServices.UpdateUser;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Hosting.Internal;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BuhUchetApi
 {
@@ -43,7 +36,9 @@ namespace BuhUchetApi
             services.AddTransient<AuthentificateService>();
             services.AddTransient<UpdateUserService>();
             services.AddTransient<RemoveUserService>();
+
             services.AddTransient<AmortizationService>();
+            services.AddTransient<SignOsService>();
 
             services.AddTransient<AddDirectory>();
             services.AddTransient<GetDirectory>();

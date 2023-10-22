@@ -14,7 +14,7 @@ namespace BuhUchetApi.Models.MainThingModels
         /// <summary>
         /// Наименование
         /// </summary>
-        public string Name { get; set; }
+        public Guid NameId { get; set; }
         /// <summary>
         /// Дата принятия к учету
         /// </summary>
@@ -28,13 +28,14 @@ namespace BuhUchetApi.Models.MainThingModels
         /// </summary>
         public double StartPrice { get; set; }
         /// <summary>
-        /// МОЛ
+        /// Отправитель
         /// </summary>
-        public Guid EmployeeId { get; set; }
+        public Guid SenderId { get; set; }
+
         /// <summary>
-        /// Срок полезного использования в годах
+        /// Получатель
         /// </summary>
-        public int UsefullMonths { get; set; }
+        public Guid RecepiantId { get; set; }
 
         /// <summary>
         /// Група ОС

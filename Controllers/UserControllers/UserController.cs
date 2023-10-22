@@ -33,7 +33,7 @@ namespace BuhUchetApi.Controllers.UserControllers
 
         [HttpPost]
         [Route("registerUser")]
-        public async Task<BaseAnswerVm<Account>> RegisterUser(RegisterRequestDto request)
+        public async Task<BaseAnswerVm<FullEmployee>> RegisterUser(RegisterRequestDto request)
         {
             var response = await _registerUserService.Register(request);
             return response;
@@ -41,7 +41,7 @@ namespace BuhUchetApi.Controllers.UserControllers
 
         [HttpPost]
         [Route("authentificateUser")]
-        public async Task<BaseAnswerVm<Account>> AuthentificateUser(AuthentificateRequestDto request)
+        public async Task<BaseAnswerVm<FullEmployee>> AuthentificateUser(AuthentificateRequestDto request)
         {
             var response = await _authentificateService.Authentificate(request);
             return response;
@@ -49,7 +49,7 @@ namespace BuhUchetApi.Controllers.UserControllers
 
         [HttpPost]
         [Route("updateUser")]
-        public async Task<BaseAnswerVm<Account>> UpdateUser(UpdateUserDto request)
+        public async Task<BaseAnswerVm<FullEmployee>> UpdateUser(UpdateUserDto request)
         {
             var response = await _updateUserService.UpdateUser(request);
             return response;

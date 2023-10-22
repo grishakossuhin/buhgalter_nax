@@ -1,5 +1,4 @@
 ﻿using BuhUchetApi.DataBase;
-using BuhUchetApi.DataBase.Entities;
 using BuhUchetApi.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -16,21 +15,15 @@ namespace BuhUchetApi.Services.UserServices.AuthentificateUser
             _dbContext = dbContext;
         }
 
-        public async Task<BaseAnswerVm<Account>> Authentificate(AuthentificateRequestDto request)
+        public async Task<BaseAnswerVm<FullEmployee>> Authentificate(AuthentificateRequestDto request)
         {
             try
             {
-                var account = await _dbContext.Accounts
-                .Include(c => c.Employee)
-                .Include(c => c.Employee.Mol)
-                .Include(c => c.Employee)
-                .Include(c => c.Employee.Post)
-                .Include(c => c.Role)
-                .FirstOrDefaultAsync(c => c.Username == request.Username && c.Password == request.Password);
+                var account = await _dbContext.Accounts.Include(u => u.Employee).FirstOrDefaultAsync(c => c.Username == request.Username && c.Password == request.Password);
 
                 if (account == null)
                 {
-                    var response = new BaseAnswerVm<Account>()
+                    var response = new BaseAnswerVm<FullEmployee>()
                     {
                         Success = false,
                         Message = "Неправильный логин или пароль",
@@ -39,17 +32,19 @@ namespace BuhUchetApi.Services.UserServices.AuthentificateUser
                     return response;
                 }
 
-                var succResponse = new BaseAnswerVm<Account>()
+                var user = await GetFullEmployee.GetFullEmployee.Getemployee(account.Employee.Id);
+
+                var succResponse = new BaseAnswerVm<FullEmployee>()
                 {
                     Success = true,
                     Message = "Успешная аутентификация",
-                    Content = account
+                    Content = user.Content
                 };
                 return succResponse;
             }
             catch(Exception ex)
             {
-                var response = new BaseAnswerVm<Account>()
+                var response = new BaseAnswerVm<FullEmployee>()
                 {
                     Success = false,
                     Message = "Ошибка получения данных. " + ex.Message,

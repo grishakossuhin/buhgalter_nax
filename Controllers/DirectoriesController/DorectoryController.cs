@@ -4,6 +4,7 @@ using BuhUchetApi.Models.Directories;
 using BuhUchetApi.Services.Directories;
 using BuhUchetApi.Services.RegisterUser;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace BuhUchetApi.Controllers.DirectoriesController
@@ -38,13 +39,13 @@ namespace BuhUchetApi.Controllers.DirectoriesController
         [Route("updateDirectory")]
         public async Task<BaseAnswerVm<string>> UpdateDirectory(UpdateDirectoryDto request)
         {
-            var response = await _updateDirectory.RemoveDir(request);
+            var response = await _updateDirectory.UpdateDir(request);
             return response;
         }
 
         [HttpPost]
         [Route("getDirectory")]
-        public async Task<BaseAnswerVm<string>> UpdateDirectory(Enums.Directories dir)
+        public async Task<BaseAnswerVm<List<GetDirectoryVm>>> UpdateDirectory(Enums.Directories dir)
         {
             var response = await _getDirectory.GetDir(dir);
             return response;

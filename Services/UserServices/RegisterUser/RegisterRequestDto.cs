@@ -12,5 +12,8 @@ namespace BuhUchetApi.Services.RegisterUser
         public string Thirdname { get; set; }
         public Guid Post { get; set; }
         public Guid Departament { get; set; }
+        public Guid Mol { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
     }
 }

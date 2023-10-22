@@ -16,51 +16,107 @@ namespace BuhUchetApi.Services.UserServices.UpdateUser
             _dbContext = dbContext;
         }
 
-        public async Task<BaseAnswerVm<Account>> UpdateUser(UpdateUserDto request)
+        public async Task<BaseAnswerVm<FullEmployee>> UpdateUser(UpdateUserDto request)
         {
             var account = await _dbContext.Accounts
                .Include(c => c.Employee)
-               .Include(c => c.Employee.Departament)
-               .Include(c => c.Employee.Post)
-               .Include(c => c.Role)
                .FirstOrDefaultAsync(c => c.Id == request.Id);
 
             if (account == null)
             {
-                return new BaseAnswerVm<Account>()
+                return new BaseAnswerVm<FullEmployee>()
                 {
                     Success = false,
                     Message = "Не найден пользователь с идентификатором " + request.Id.ToString(),
                     Content = null
                 };
             }
+
+            var post = await _dbContext.Posts.FirstOrDefaultAsync(c => c.Id == request.Post);
+            if (post == null)
+            {
+                return new BaseAnswerVm<FullEmployee>()
+                {
+                    Success = false,
+                    Message = $"Не найдена должность {request.Post} в справочнике",
+                    Content = null
+                };
+            }
+
+            var departament = await _dbContext.Departaments.FirstOrDefaultAsync(c => c.Id == request.Departament);
+            if (departament == null)
+            {
+                return new BaseAnswerVm<FullEmployee>()
+                {
+                    Success = false,
+                    Message = $"Не найдено подразделение {request.Departament} в справочнике",
+                    Content = null
+                };
+            }
+
+            var mol = await _dbContext.Mols.FirstOrDefaultAsync(c => c.Id == request.Mol);
+            if (mol == null)
+            {
+                return new BaseAnswerVm<FullEmployee>()
+                {
+                    Success = false,
+                    Message = $"Не найдено МОЛ {request.Mol} в справочнике",
+                    Content = null
+                };
+            }
+
             try
             {
                 account.Username = request.Username != account.Username ? request.Username : account.Username;
                 account.Password = (request.Password != account.Password && !string.IsNullOrWhiteSpace(request.Password)) ? request.Password : account.Password;
-                account.Role.Role = request.Role != account.Role.Role ? request.Role : account.Role.Role;
                 account.Employee.Firstname = request.Firstname != account.Employee.Firstname ? request.Firstname : account.Employee.Firstname;
                 account.Employee.Secondname = request.Secondname != account.Employee.Secondname ? request.Secondname : account.Employee.Secondname;
                 account.Employee.Thirdname = request.Thirdname != account.Employee.Thirdname ? request.Thirdname : account.Employee.Thirdname;
-                account.Employee.Departament.Name = request.Departament != account.Employee.Departament.Name ? request.Departament : account.Employee.Departament.Name;
-                account.Employee.Post.Name = request.Post != account.Employee.Post.Name ? request.Post : account.Employee.Post.Name;
                 await _dbContext.SaveChangesAsync();
-                return new BaseAnswerVm<Account>()
-                {
-                    Success = true,
-                    Message = "Успешное обновление пользователя",
-                    Content = account
-                };
             }
             catch (Exception ex)
             {
-                return new BaseAnswerVm<Account>()
+                return new BaseAnswerVm<FullEmployee>()
                 {
-                    Success = true,
-                    Message = "Успешное обновление пользователя",
-                    Content = account
+                    Success = false,
+                    Message = "Ошибка обновления пользователя. " + ex.Message,
                 };
             }
+
+            try
+            {
+                var purpose = await _dbContext.Purposes
+                .Include(u => u.Employee)
+                .Include(u => u.Post)
+                .Include(u => u.Departament)
+                .FirstOrDefaultAsync(c => c.Employee.Id == account.Employee.Id);
+                purpose.Post = post;
+                purpose.Departament = departament;
+                purpose.BeginDate = request.StartDate;
+                purpose.EndDate = request.EndDate;
+                await _dbContext.SaveChangesAsync();
+
+                
+            }
+            catch(Exception ex)
+            {
+                return new BaseAnswerVm<FullEmployee>()
+                {
+                    Success = false,
+                    Message = "Ошибка обновления пользователя. " + ex.Message,
+                };
+            }
+
+            var fullemployee = await GetFullEmployee.GetFullEmployee.Getemployee(account.Employee.Id);
+
+            var responseSuccess = new BaseAnswerVm<FullEmployee>()
+            {
+                Success = false,
+                Message = "Успешное обновление пользователя",
+                Content = fullemployee.Content
+            };
+            return responseSuccess;
+
         }
     }
 }

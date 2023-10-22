@@ -19,9 +19,6 @@ namespace BuhUchetApi.Services.UserServices.RemoveUser
         {
             var useracc = await _dbContext.Accounts
               .Include(c => c.Employee)
-              .Include(c => c.Employee.Departament)
-              .Include(c => c.Employee.Post)
-              .Include(c => c.Role)
               .FirstOrDefaultAsync(c => c.Id == userId);
 
             if (useracc == null)
@@ -37,9 +34,22 @@ namespace BuhUchetApi.Services.UserServices.RemoveUser
             {
                 try
                 {
-                    _dbContext.Departaments.Remove(useracc.Employee.Departament);
-                    _dbContext.UserRoles.Remove(useracc.Role);
-                    _dbContext.Posts.Remove(useracc.Employee.Post);
+                    var purpose = await _dbContext.Purposes.Include(u => u.Employee).FirstOrDefaultAsync(c => c.Employee.Id == useracc.Employee.Id);
+                    _dbContext.Purposes.Remove(purpose);
+                    await _dbContext.SaveChangesAsync();
+                }
+                catch (Exception ex)
+                {
+                    return new BaseAnswerVm<string>()
+                    {
+                        Success = false,
+                        Message = "Не удалось удалить пользователя. " + ex.Message,
+                        Content = null
+                    };
+                }
+
+                try
+                {
                     _dbContext.Employees.Remove(useracc.Employee);
                     _dbContext.Accounts.Remove(useracc);
                     await _dbContext.SaveChangesAsync();

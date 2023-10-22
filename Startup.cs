@@ -1,5 +1,6 @@
 using BuhUchetApi.Common;
 using BuhUchetApi.DataBase;
+using BuhUchetApi.Models.MainThingModels;
 using BuhUchetApi.Services.Amortization;
 using BuhUchetApi.Services.Directories;
 using BuhUchetApi.Services.MainThingServices;
@@ -39,6 +40,8 @@ namespace BuhUchetApi
 
             services.AddTransient<AmortizationService>();
             services.AddTransient<SignOsService>();
+            services.AddTransient<ChangeStateOsService>();
+            services.AddTransient<GetAllMainThings>();
 
             services.AddTransient<AddDirectory>();
             services.AddTransient<GetDirectory>();

@@ -25,7 +25,5 @@ namespace BuhUchetApi.DataBase.Entities
         /// Дата окончания
         /// </summary>
         public DateTime EndDate { get; set; }
-
-
     }
 }
